@@ -1,4 +1,6 @@
-import { Entity, Column, PrimaryGeneratedColumn  } from "typeorm";
+import { Entity, Column, PrimaryGeneratedColumn, OneToMany, JoinColumn } from "typeorm";
+
+import Image from './Image';
 
 @Entity('orphanages')
 export default class Orphanage {
@@ -27,4 +29,7 @@ export default class Orphanage {
   @Column()
   open_on_weekends: boolean;
   
+  @OneToMany(() => Image, imagem => imagem.orphanage)
+  @JoinColumn({ name: 'orphanage_id' })
+  images: Image[];
 }
