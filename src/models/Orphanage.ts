@@ -4,8 +4,6 @@ import { Entity, Column, PrimaryGeneratedColumn  } from "typeorm";
 export default class Orphanage {
 
   @PrimaryGeneratedColumn('increment')
-
-  @Column()
   id: number;
   
   @Column()
@@ -24,7 +22,7 @@ export default class Orphanage {
   instructions: string;
   
   @Column()
-  open_hours: string;
+  opening_hours: string;
   
   @Column()
   open_on_weekends: boolean;
