@@ -1,6 +1,7 @@
 import {Router} from 'express';
 import multer from 'multer';
 
+import authMiddleware from './middlewares/authMiddleware';
 import uploadConfig from './config/upload';
 import OrphanagesController from './controllers/OrphanagesController';
 import UserController from './controllers/UserController';
@@ -10,7 +11,7 @@ const routes = Router();
 const upload = multer(uploadConfig);
 
 routes.post('/auth', AuthController.authenticate);
-routes.post('/users', UserController.create);
+routes.post('/users', authMiddleware, UserController.create);
 
 routes.get('/orphanages', OrphanagesController.index);
 routes.get('/orphanages/:id', OrphanagesController.show);
